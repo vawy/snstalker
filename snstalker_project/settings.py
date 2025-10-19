@@ -56,7 +56,7 @@ ASGI_APPLICATION = "snstalker_project.asgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",  # postgresql + psycopg3
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": env(var="DB_NAME", default="postgres"),
         "USER": env(var="DB_USER", default="postgres"),
         "PASSWORD": env(var="DB_PASSWORD", default="postgres"),

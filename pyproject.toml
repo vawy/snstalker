@@ -1,46 +1,72 @@
-[tool.poetry]
+[project]
 name = "snstalker"
 version = "0.1.0"
 description = "Viewer for social networks with anonymous access"
-authors = [""]
 readme = "README.md"
-package-mode = false
+requires-python = ">=3.11"
 
-[tool.poetry.dependencies]
-python = ">=3.11,<4"
-Django = ">=5.0"
-djangorestframework = ">=3.15"
-django-environ = ">=0.12.0,<1.0"
-psycopg = { version = "^3.2", extras = ["binary"] }
-requests = "^2.31"
-beautifulsoup4 = "^4.12"
+# Зависимости основного проекта
+dependencies = [
+    "Django>=5.0",
+    "djangorestframework>=3.15",
+    "django-environ>=0.12.0,<1.0",
+    "psycopg[binary]>=3.2",
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
+]
 
-[tool.poetry.group.future.dependencies]
-django-ratelimit = ">=4.1"
-prometheus-client = ">=0.20"
-django-redis = ">=5.4"
-celery = ">=5.4"
-redis = ">=5.0"
-httpx = { version = ">=0.27", extras = ["http2"] }
-beautifulsoup4 = ">=4.12"
-lxml = ">=5.2"
-pydantic = ">=2.8"
-gunicorn = ">=22.0"
-uvicorn = ">=0.30"
+# Дополнительные зависимости
+[project.optional-dependencies]
+future = [
+    "django-ratelimit>=4.1",
+    "prometheus-client>=0.20",
+    "django-redis>=5.4",
+    "celery>=5.4",
+    "redis>=5.0",
+    "httpx[http2]>=0.27",
+    "lxml>=5.2",
+    "pydantic>=2.8",
+    "gunicorn>=22.0",
+    "uvicorn>=0.30",
+]
 
-[tool.poetry.group.dev.dependencies]
-pytest = ">=8.0"
-pytest-django = ">=4.8"
-black = ">=24.0"
-isort = ">=5.13"
-mypy = ">=1.10"
-ruff = ">=0.5"
+dev = [
+    "pytest>=8.0",
+    "pytest-django>=4.8",
+    "black>=24.0",
+    "isort>=5.13",
+    "mypy>=1.10",
+    "ruff>=0.5",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
+# Настройки pytest (аналог [tool.pytest.ini_options])
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "insta_service.settings"
+DJANGO_SETTINGS_MODULE = "snstalker_project.settings"
 pythonpath = ["."]
 addopts = "-q"
+
+# Дополнительные настройки инструментов (если нужно)
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.ruff]
+line-length = 88
+extend-ignore = [
+    "E501",
+]
+
+[tool.setuptools]
+packages = { find = { include = ["snstalker_project*"] } }
