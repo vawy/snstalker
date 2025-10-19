@@ -7,7 +7,7 @@ WORKDIR /app
 COPY pyproject.toml uv.lock requirements.txt ./
 RUN uv venv /app/.venv && uv pip install --no-cache-dir -r requirements.txt
 
-# === STAGE 2: Runtime (финальный образ) ===
+# === STAGE 2: Runtime ===
 FROM python:3.11-slim AS runtime
 
 RUN apt-get update && apt-get install -y --no-install-recommends libpq-dev && rm -rf /var/lib/apt/lists/*

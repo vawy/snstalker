@@ -43,13 +43,13 @@ dev = [
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
-# Настройки pytest (аналог [tool.pytest.ini_options])
+# Настройки pytest
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "snstalker_project.settings"
 pythonpath = ["."]
 addopts = "-q"
 
-# Дополнительные настройки инструментов (если нужно)
+# Дополнительные настройки инструментов
 [tool.black]
 line-length = 88
 
