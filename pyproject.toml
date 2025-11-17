@@ -45,7 +45,7 @@ build-backend = "setuptools.build_meta"
 
 # Настройки pytest
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "snstalker_project.settings"
+DJANGO_SETTINGS_MODULE = "config.settings"
 pythonpath = ["."]
 addopts = "-q"
 
@@ -69,4 +69,4 @@ extend-ignore = [
 ]
 
 [tool.setuptools]
-packages = { find = { include = ["snstalker_project*"] } }
+packages = { find = { include = ["config*"] } }

@@ -20,5 +20,5 @@ ENV PYTHONPATH=/home/app/.venv/lib/python3.11/site-packages:$PYTHONPATH
 COPY --chown=app:app . .
 EXPOSE 8000
 
-# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "snstalker_project.wsgi:application"]
-CMD ["uvicorn", "snstalker_project.asgi:application", "--host", "0.0.0.0", "--port", "8000"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
+CMD ["uvicorn", "config.asgi:application", "--host", "0.0.0.0", "--port", "8000"]
